@@ -1,0 +1,106 @@
+---
+
+---
+
+<section
+  id="slider"
+  class="w-[90%] mx-auto max-w-screen-lg overflow-hidden rounded-lg mt-16 slider animate-blurred-fade-in"
+>
+  <figure class="relative w-full h-full aspect-video slider-childs" data-active>
+    <img
+      src="../../public/images/IDI-slider-1.jpg"
+      alt="1"
+      class="w-full h-full block object-cover"
+    />
+  </figure>
+
+  <figure class="relative w-full h-full aspect-video slider-childs">
+    <img
+      src="../../public/images/IDI-slider-2.jpg"
+      alt="1"
+      class="w-full h-full block object-cover"
+    />
+  </figure>
+
+  <button class="slider-next bg-white rounded-full mr-4" data-button="prev">
+    <img class="w-8 aspect-square md:w-10" src="../../public/images/next.svg" />
+  </button>
+
+  <button class="slider-prev bg-white rounded-full ml-4" data-button="next">
+    <img class="w-8 aspect-square md:w-10" src="../../public/images/prev.svg" />
+  </button>
+</section>
+
+
+<script is:inline>
+    const slider = document.querySelector("#slider");
+const childsSlider = [...slider.querySelectorAll("figure")];
+const nextButton = document.querySelector("[data-button='next']");
+const prevButton = document.querySelector("[data-button='prev']");
+const lengthImages = childsSlider.length;
+
+
+childsSlider.forEach(function(child, index){
+    child.dataset.idSlider = index;
+});
+
+
+
+nextButton.addEventListener("click", function(e){
+
+    const currentImage = getCurrentImage();
+    let currentActiveIndex = currentImage.dataset.idSlider;
+    currentActiveIndex++;
+ 
+    if(currentActiveIndex >= lengthImages){
+
+        currentActiveIndex = 0;
+
+    }
+
+    const newActiveElement = childsSlider[currentActiveIndex];
+
+    removeActiveElement();
+    addNewActiveElement(newActiveElement);
+
+});
+
+prevButton.addEventListener("click", function(e){
+
+    const currentImage = getCurrentImage();
+    let currentActiveIndex = currentImage.dataset.idSlider;
+    currentActiveIndex--;
+    
+    
+    if(currentActiveIndex < 0){
+
+        currentActiveIndex = lengthImages-1;
+
+    }
+
+    const newActiveElement = childsSlider[currentActiveIndex];
+
+    removeActiveElement();
+    addNewActiveElement(newActiveElement);
+
+});
+
+
+// obtener el elemento activo
+function getCurrentImage(){
+    const currentImage = slider.querySelector("[data-active]");
+
+    return currentImage;
+}
+
+// eliminar el elemento actual con data active
+function removeActiveElement(){
+    const currentImage = getCurrentImage();
+    currentImage.removeAttribute("data-active");
+}
+
+// Agregar dataactive a un elemento
+function addNewActiveElement(element){
+    element.setAttribute("data-active", "");
+}
+</script>

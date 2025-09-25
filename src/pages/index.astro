@@ -2,8 +2,123 @@
 import "../styles/global.css";
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
+import Slider from "../components/Slider.astro";
+import Divider from "../components/Divider.astro";
+import Card from "../components/Card.astro";
 ---
 
 <Layout title="IDI - Bienvenido">
   <Nav />
+
+  <main>
+    <div class="grid place-items-center animate-blurred-fade-in mt-16">
+      <div
+        class="flex-col justify-center text-center items-center align-middle prose-2xl"
+      >
+        <h1
+          class="text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6x text-blue-600"
+        >
+          Instituto de Inmunología <br />
+          <span class="text-gray-900"
+            >"Dr. Nicolás Bianco Colmenares" (IDI)</span
+          >
+        </h1>
+        <h1
+          class="-mt-6 text-2xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2x"
+        >
+          Entre los siete Institutos de la Facultad de Medicina <span
+            class="text-blue-600 dark:text-blue-500">"el más joven"</span
+          >
+        </h1>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <Slider />
+      </div>
+    </div>
+
+    <div class="mt-14">
+      <Divider title="" />
+    </div>
+
+    <div class="grid">
+      <div class=" w-full text-left">
+        <h1 class="text-8xl prose-xl font-bold align-middle">
+          Te ofrecemos <span class="text-blue-600">los mejores servicios</span>
+        </h1>
+        <h2 class="text-4xl prose-lg font-normal align-middle">
+          atendemos tus necesidades
+        </h2>
+      </div>
+    </div>
+
+    <div class="">
+      <div class="grid grid-cols-3 mt-14 m-10 place-items-center">
+        <Card
+          url="/images/consulta.png"
+          title="Consulta"
+          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
+        />
+
+        <Card
+          url="/images/IDI-slider-1.jpg"
+          title="Laboratorio"
+          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
+        />
+
+        <Card
+          url="/images/espirometria.png"
+          title="Espirometria"
+          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
+        />
+
+        <Card
+          url="/images/Informe.png"
+          title="Informe Alto Costo"
+          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
+        />
+
+        <Card
+          url="/images/Prick.png"
+          title="PRICK"
+          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
+        />
+
+        <Card
+          url="/images/espirometria.png"
+          title="Prueba Epicutanea (Parche)"
+          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
+        />
+
+        <Card
+          url="/images/Provocacion.png"
+          title="Prueba de Provocacion"
+          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
+        />
+
+        <Card
+          url="/images/Autologo.png"
+          title="Suero Autologo"
+          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
+        />
+
+        <Card
+          url="/images/Parenteral.png"
+          title="Tratamiento Parenteral"
+          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
+        />
+      </div>
+    </div>
+
+    <div class="mt-14">
+      <Divider title="" />
+    </div>
+
+    <!-- examenes -->
+
+    <!-- footer -->
+
+  </main>
 </Layout>
