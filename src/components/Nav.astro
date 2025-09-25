@@ -1,0 +1,66 @@
+---
+
+---
+<header>
+  <nav class="grid grid-cols-2 md:grid-cols-[1fr_auto_1fr] border-b-1 border-gray-300 shadow-lg h-20 items-center px-4">
+    <div class="flex justify-start">
+      <a class="group relative hover:text-indigo-600 transition-colors duration-300 font-semibold" href="/">
+        <span>Icono</span>
+        <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-indigo-600 transition-all duration-300 group-hover:w-full"></span>
+      </a>
+    </div>
+
+    <button class="menu-toggle md:hidden justify-self-end text-gray-700 hover:text-indigo-600 transition-colors duration-300">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+    
+    <ul class="hidden navbar-menu md:flex gap-8 justify-center text-center font-semibold col-span-2 md:col-auto md:static p-4 md:p-0 flex-col md:flex-row">
+      <li>
+        <a class="group relative hover:text-indigo-600 transition-colors duration-300" href="#">
+          <span>Servicios</span>
+          <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-indigo-600 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </li>
+      <li>
+        <a class="group relative hover:text-indigo-600 transition-colors duration-300" href="#">
+          <span>Examenes</span>
+          <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-indigo-600 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </li>
+      <li>
+        <a class="group relative hover:text-indigo-600 transition-colors duration-300" href="#">
+          <span>Ubicacion</span>
+          <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-indigo-600 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </li>
+      <li>
+        <a class="group relative hover:text-indigo-600 transition-colors duration-300" href="#">
+          <span>Contacto</span>
+          <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-indigo-600 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </li>
+    </ul>
+    
+    <div class="hidden md:flex justify-end">
+      <a class="group relative hover:text-indigo-600 transition-colors duration-300 font-semibold" href="/">
+        <span>Redes Sociales</span>
+        <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-indigo-600 transition-all duration-300 group-hover:w-full"></span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", (event) =>{
+    const burger = document.querySelector<HTMLButtonElement>('.menu-toggle');
+    const menu = document.querySelector<htmlul>('.')
+
+      function toggleMenu(): void{
+        alert("hello");
+      }
+
+      burger?.addEventListener("click", toggleMenu);
+  });
+</script> -->
