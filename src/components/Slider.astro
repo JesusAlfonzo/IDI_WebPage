@@ -1,106 +1,97 @@
 ---
-
 ---
-
 <section
-  id="slider"
-  class="w-[90%] mx-auto max-w-screen-lg overflow-hidden rounded-lg mt-16 slider animate-blurred-fade-in"
+  id="slider"
+  class="relative w-full max-w-screen-lg mx-auto overflow-hidden rounded-lg animate-blurred-fade-in aspect-video"
 >
-  <figure class="relative w-full h-full aspect-video slider-childs" data-active>
-    <img
-      src="../../public/images/IDI-slider-1.jpg"
-      alt="1"
-      class="w-full h-full block object-cover"
-    />
-  </figure>
+  <div class="flex h-full w-full transition-transform duration-500 ease-in-out">
+    <figure class="flex-shrink-0 w-full h-full relative" data-active>
+      <img
+        src="../../public/images/IDI-slider-1.jpg"
+        alt="IDI slider 1"
+        class="w-full h-full block object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+    </figure>
 
-  <figure class="relative w-full h-full aspect-video slider-childs">
-    <img
-      src="../../public/images/IDI-slider-2.jpg"
-      alt="1"
-      class="w-full h-full block object-cover"
-    />
-  </figure>
+    <figure class="flex-shrink-0 w-full h-full relative">
+      <img
+        src="../../public/images/IDI-slider-2.jpg"
+        alt="IDI slider 2"
+        class="w-full h-full block object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+    </figure>
+  </div>
 
-  <button class="slider-next bg-white rounded-full mr-4" data-button="prev">
-    <img class="w-8 aspect-square md:w-10" src="../../public/images/next.svg" />
-  </button>
+  <button
+    class="absolute top-1/2 left-4 -translate-y-1/2 p-2 bg-white/20 hover:bg-white/40 rounded-full transition-colors duration-300 backdrop-blur-sm focus:outline-none"
+    data-button="prev"
+  >
+    <svg
+      class="w-8 h-8 text-white"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M15 19l-7-7 7-7"
+      ></path>
+    </svg>
+  </button>
 
-  <button class="slider-prev bg-white rounded-full ml-4" data-button="next">
-    <img class="w-8 aspect-square md:w-10" src="../../public/images/prev.svg" />
-  </button>
+  <button
+    class="absolute top-1/2 right-4 -translate-y-1/2 p-2 bg-white/20 hover:bg-white/40 rounded-full transition-colors duration-300 backdrop-blur-sm focus:outline-none"
+    data-button="next"
+  >
+    <svg
+      class="w-8 h-8 text-white"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 5l7 7-7 7"
+      ></path>
+    </svg>
+  </button>
 </section>
 
-
 <script is:inline>
-    const slider = document.querySelector("#slider");
-const childsSlider = [...slider.querySelectorAll("figure")];
-const nextButton = document.querySelector("[data-button='next']");
-const prevButton = document.querySelector("[data-button='prev']");
-const lengthImages = childsSlider.length;
+  const slider = document.querySelector("#slider");
+  const sliderContainer = slider.querySelector("div");
+  const childsSlider = [...slider.querySelectorAll("figure")];
+  const nextButton = document.querySelector("[data-button='next']");
+  const prevButton = document.querySelector("[data-button='prev']");
+  const lengthImages = childsSlider.length;
+  let currentIndex = 0;
 
+  const updateSlider = () => {
+    const offset = currentIndex * 100;
+    sliderContainer.style.transform = `translateX(-${offset}%)`;
+  };
 
-childsSlider.forEach(function(child, index){
-    child.dataset.idSlider = index;
-});
-
-
-
-nextButton.addEventListener("click", function(e){
-
-    const currentImage = getCurrentImage();
-    let currentActiveIndex = currentImage.dataset.idSlider;
-    currentActiveIndex++;
- 
-    if(currentActiveIndex >= lengthImages){
-
-        currentActiveIndex = 0;
-
+  nextButton.addEventListener("click", function (e) {
+    currentIndex++;
+    if (currentIndex >= lengthImages) {
+      currentIndex = 0;
     }
+    updateSlider();
+  });
 
-    const newActiveElement = childsSlider[currentActiveIndex];
-
-    removeActiveElement();
-    addNewActiveElement(newActiveElement);
-
-});
-
-prevButton.addEventListener("click", function(e){
-
-    const currentImage = getCurrentImage();
-    let currentActiveIndex = currentImage.dataset.idSlider;
-    currentActiveIndex--;
-    
-    
-    if(currentActiveIndex < 0){
-
-        currentActiveIndex = lengthImages-1;
-
+  prevButton.addEventListener("click", function (e) {
+    currentIndex--;
+    if (currentIndex < 0) {
+      currentIndex = lengthImages - 1;
     }
-
-    const newActiveElement = childsSlider[currentActiveIndex];
-
-    removeActiveElement();
-    addNewActiveElement(newActiveElement);
-
-});
-
-
-// obtener el elemento activo
-function getCurrentImage(){
-    const currentImage = slider.querySelector("[data-active]");
-
-    return currentImage;
-}
-
-// eliminar el elemento actual con data active
-function removeActiveElement(){
-    const currentImage = getCurrentImage();
-    currentImage.removeAttribute("data-active");
-}
-
-// Agregar dataactive a un elemento
-function addNewActiveElement(element){
-    element.setAttribute("data-active", "");
-}
+    updateSlider();
+  });
 </script>

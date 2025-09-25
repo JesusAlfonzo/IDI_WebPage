@@ -10,115 +10,120 @@ import Card from "../components/Card.astro";
 <Layout title="IDI - Bienvenido">
   <Nav />
 
-  <main>
-    <div class="grid place-items-center animate-blurred-fade-in mt-16">
-      <div
-        class="flex-col justify-center text-center items-center align-middle prose-2xl"
-      >
-        <h1
-          class="text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6x text-blue-600"
-        >
+  <main class="container mx-auto px-4 pt-24">
+    <div class="grid place-items-center animate-blurred-fade-in py-10">
+      <div class="flex flex-col items-center text-center gap-2">
+        <h1 class="text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl text-blue-600 transition-colors duration-300 hover:text-indigo-600">
           Instituto de Inmunología <br />
-          <span class="text-gray-900"
-            >"Dr. Nicolás Bianco Colmenares" (IDI)</span
-          >
+          <span class="text-gray-900 transition-colors duration-300 hover:text-indigo-600">
+            "Dr. Nicolás Bianco Colmenares" (IDI)
+          </span>
         </h1>
-        <h1
-          class="-mt-6 text-2xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2x"
-        >
-          Entre los siete Institutos de la Facultad de Medicina <span
-            class="text-blue-600 dark:text-blue-500">"el más joven"</span
-          >
-        </h1>
-      </div>
-    </div>
-
-    <div>
-      <div>
-        <Slider />
-      </div>
-    </div>
-
-    <div class="mt-14">
-      <Divider title="" />
-    </div>
-
-    <div class="grid">
-      <div class=" w-full text-left">
-        <h1 class="text-8xl prose-xl font-bold align-middle">
-          Te ofrecemos <span class="text-blue-600">los mejores servicios</span>
-        </h1>
-        <h2 class="text-4xl prose-lg font-normal align-middle">
-          atendemos tus necesidades
+        <h2 class="text-2xl font-bold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-3xl transition-colors duration-300 hover:text-indigo-600">
+          Entre los siete Institutos de la Facultad de Medicina
+          <span class="text-blue-600 dark:text-blue-500 transition-colors duration-300 hover:text-indigo-600">
+            "el más joven"
+          </span>
         </h2>
       </div>
     </div>
 
-    <div class="">
-      <div class="grid grid-cols-3 mt-14 m-10 place-items-center">
-        <Card
-          url="/images/consulta.png"
-          title="Consulta"
-          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
-        />
-
-        <Card
-          url="/images/IDI-slider-1.jpg"
-          title="Laboratorio"
-          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
-        />
-
-        <Card
-          url="/images/espirometria.png"
-          title="Espirometria"
-          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
-        />
-
-        <Card
-          url="/images/Informe.png"
-          title="Informe Alto Costo"
-          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
-        />
-
-        <Card
-          url="/images/Prick.png"
-          title="PRICK"
-          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
-        />
-
-        <Card
-          url="/images/espirometria.png"
-          title="Prueba Epicutanea (Parche)"
-          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
-        />
-
-        <Card
-          url="/images/Provocacion.png"
-          title="Prueba de Provocacion"
-          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
-        />
-
-        <Card
-          url="/images/Autologo.png"
-          title="Suero Autologo"
-          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
-        />
-
-        <Card
-          url="/images/Parenteral.png"
-          title="Tratamiento Parenteral"
-          description="Podés usar el mismo componente en varias ocasiones con distintos contenidos."
-        />
-      </div>
+    <div class="py-4">
+      <Slider />
     </div>
 
-    <div class="mt-14">
+    <div class="py-8">
       <Divider title="" />
     </div>
 
-    <!-- examenes -->
+    <div class="grid gap-4 py-8 text-center">
+      <h1 class="text-5xl md:text-6xl lg:text-8xl font-bold transition-colors duration-300 hover:text-indigo-600">
+        Te ofrecemos <span class="text-blue-600 transition-colors duration-300 hover:text-indigo-600">los mejores servicios</span>
+      </h1>
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-normal transition-colors duration-300 hover:text-indigo-600">
+        atendemos tus necesidades
+      </h2>
+    </div>
 
-    <!-- footer -->
+    <div class="py-8">
+      <div class="relative overflow-hidden">
+        <div id="cards-container" class="flex transition-transform duration-500 ease-in-out gap-6">
+          <div class="flex-shrink-0 w-1/4">
+            <Card url="/images/consulta.png" title="Consulta" description="Podés usar el mismo componente en varias ocasiones con distintos contenidos." />
+          </div>
+          <div class="flex-shrink-0 w-1/4">
+            <Card url="/images/IDI-slider-1.jpg" title="Laboratorio" description="Podés usar el mismo componente en varias ocasiones con distintos contenidos." />
+          </div>
+          <div class="flex-shrink-0 w-1/4">
+            <Card url="/images/espirometria.png" title="Espirometria" description="Podés usar el mismo componente en varias ocasiones con distintos contenidos." />
+          </div>
+          <div class="flex-shrink-0 w-1/4">
+            <Card url="/images/Informe.png" title="Informe Alto Costo" description="Podés usar el mismo componente en varias ocasiones con distintos contenidos." />
+          </div>
+          <div class="flex-shrink-0 w-1/4">
+            <Card url="/images/Prick.png" title="PRICK" description="Podés usar el mismo componente en varias ocasiones con distintos contenidos." />
+          </div>
+          <div class="flex-shrink-0 w-1/4">
+            <Card url="/images/espirometria.png" title="Prueba Epicutanea (Parche)" description="Podés usar el mismo componente en varias ocasiones con distintos contenidos." />
+          </div>
+          <div class="flex-shrink-0 w-1/4">
+            <Card url="/images/Provocacion.png" title="Prueba de Provocacion" description="Podés usar el mismo componente en varias ocasiones con distintos contenidos." />
+          </div>
+          <div class="flex-shrink-0 w-1/4">
+            <Card url="/images/Autologo.png" title="Suero Autologo" description="Podés usar el mismo componente en varias ocasiones con distintos contenidos." />
+          </div>
+          <div class="flex-shrink-0 w-1/4">
+            <Card url="/images/Parenteral.png" title="Tratamiento Parenteral" description="Podés usar el mismo componente en varias ocasiones con distintos contenidos." />
+          </div>
+        </div>
+        
+        <button id="prev-btn" class="absolute top-1/2 left-4 -translate-y-1/2 rounded-full p-2 bg-white/50 hover:bg-white/75 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <button id="next-btn" class="absolute top-1/2 right-4 -translate-y-1/2 rounded-full p-2 bg-white/50 hover:bg-white/75 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="py-8">
+      <Divider title="" />
+    </div>
 
   </main>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cardsContainer = document.getElementById('cards-container');
+      const cards = [...cardsContainer.querySelectorAll('.flex-shrink-0')];
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+
+      const totalCards = cards.length;
+      let currentIndex = 0;
+      const cardsToShow = 4;
+
+      const updateSlider = () => {
+        const cardWidth = cards[0].offsetWidth;
+        const offset = currentIndex * (cardWidth + 24); 
+        cardsContainer.style.transform = `translateX(-${offset}px)`;
+      };
+
+      nextBtn.addEventListener('click', () => {
+        currentIndex++;
+        if (currentIndex > totalCards - cardsToShow) {
+          currentIndex = 0;
+        }
+        updateSlider();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        currentIndex--;
+        if (currentIndex < 0) {
+          currentIndex = totalCards - cardsToShow;
+        }
+        updateSlider();
+      });
+    });
+  </script>
 </Layout>
