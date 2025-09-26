@@ -9,7 +9,7 @@ const { url, title, description } = Astro.props;
 ---
 
 <div
-  class="max-w-sm mb-14 bg-white border border-gray-200 rounded-lg shadow-sm transition-transform duration-300 hover:scale-98 hover:shadow-lg dark:bg-gray-800 dark:border-gray-700"
+  class="max-w-sm mb-14 bg-white border border-gray-200 rounded-lg shadow-sm transition-transform duration-300 hover:scale-98 hover:shadow-lg"
 >
   <a href="#">
     <img class="rounded-t-lg" src={url} alt="" />
@@ -17,19 +17,19 @@ const { url, title, description } = Astro.props;
   <div class="p-5">
     <a href="#">
       <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white transition-colors duration-300 hover:text-indigo-600"
+        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 transition-colors duration-300 hover:text-indigo-600"
       >
         {title}
       </h5>
     </a>
-    <div class="prose dark:prose-invert">
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+    <div class="prose">
+      <p class="mb-3 font-normal text-gray-700">
         {description}
       </p>
     </div>
     <a
       href="#"
-      class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg transition-colors duration-300 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg transition-colors duration-300 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
     >
       Mas Informacion
       <svg
