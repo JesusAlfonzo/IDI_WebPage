@@ -1,17 +1,32 @@
----
-
----
-
 <header class="animate-fade-in fixed top-0 w-full z-50">
   <nav
-    class="grid grid-cols-2 md:grid-cols-[1fr_auto_1fr] border-b-1 border-gray-300 shadow-lg h-20 items-center px-4 bg-white/70 backdrop-blur-sm"
+    class="grid grid-cols-2 md:grid-cols-[1fr_auto_1fr] border-b-1 border-gray-300 shadow-lg h-20 items-center px-4 bg-white/70 backdrop-blur-sm animate-fade-in"
   >
     <div class="flex justify-start">
       <a
-        class="group relative hover:text-indigo-600 transition-colors duration-300 font-semibold"
+        class="group relative text-indigo-600 hover:text-indigo-600 transition-colors duration-300 font-semibold"
         href="/"
       >
-        <span>Icono</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-8 w-8 text-blue-600 group-hover:text-indigo-600 transition-colors duration-300"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 3H4a2 2 0 00-2 2v14a2 2 0 002 2h16a2 2 0 002-2V5a2 2 0 00-2-2h-5"
+          />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 3v4a2 2 0 002 2h2a2 2 0 002-2V3m-6 9v2a2 2 0 002 2h2a2 2 0 002-2v-2"
+          />
+        </svg>
+
         <span
           class="absolute left-0 -bottom-1 h-0.5 w-0 bg-indigo-600 transition-all duration-300 group-hover:w-full"
         ></span>
@@ -39,44 +54,57 @@
     <ul
       class="hidden navbar-menu md:flex gap-12 justify-center text-center font-semibold col-span-2 md:col-auto md:static p-4 md:p-0 flex-col md:flex-row"
     >
-      <li>
+      <li class="animate-blurred-fade-in">
         <a
-          class="group relative hover:text-indigo-600 transition-colors duration-300"
-          href="#"
+          class="group relative hover:text-indigo-600 transition-colors duration-300 flex items-center space-x-1"
+          href="#servicios"
         >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2m-9 0V3h4v2m-4 0h4" />
+          </svg>
           <span>Servicios</span>
           <span
             class="absolute left-0 -bottom-1 h-0.5 w-0 bg-indigo-600 transition-all duration-300 group-hover:w-full"
           ></span>
         </a>
       </li>
-      <li>
+      <li class="animate-blurred-fade-in">
         <a
-          class="group relative hover:text-indigo-600 transition-colors duration-300"
+          class="group relative hover:text-indigo-600 transition-colors duration-300 flex items-center space-x-1"
           href="#"
         >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+          </svg>
           <span>Examenes</span>
           <span
             class="absolute left-0 -bottom-1 h-0.5 w-0 bg-indigo-600 transition-all duration-300 group-hover:w-full"
           ></span>
         </a>
       </li>
-      <li>
+      <li class="animate-blurred-fade-in">
         <a
-          class="group relative hover:text-indigo-600 transition-colors duration-300"
-          href="#"
+          class="group relative hover:text-indigo-600 transition-colors duration-300 flex items-center space-x-1"
+          href="#ubicacion"
         >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
           <span>Ubicacion</span>
           <span
             class="absolute left-0 -bottom-1 h-0.5 w-0 bg-indigo-600 transition-all duration-300 group-hover:w-full"
           ></span>
         </a>
       </li>
-      <li>
+      <li class="animate-blurred-fade-in">
         <a
-          class="group relative hover:text-indigo-600 transition-colors duration-300"
-          href="#"
+          class="group relative hover:text-indigo-600 transition-colors duration-300 flex items-center space-x-1"
+          href="#contacto"
         >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
           <span>Contacto</span>
           <span
             class="absolute left-0 -bottom-1 h-0.5 w-0 bg-indigo-600 transition-all duration-300 group-hover:w-full"
