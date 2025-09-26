@@ -1,0 +1,65 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content'; // 👈 IMPORTANTE: Añadir 'type CollectionEntry'
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+
+
+// Definir el tipo para el objeto agrupador para evitar el error 'any'
+type GroupedExamenes = Record<string, CollectionEntry<'examenes'>[]>; 
+
+const allExamenes = await getCollection('examenes');
+
+const groupedExamenes: GroupedExamenes = allExamenes.reduce((acc, examen) => {
+    // TypeScript ya sabe que examen.data.category es una de las categorías válidas (General, Alergias, etc.)
+    const category = examen.data.category; 
+    if (!acc[category]) {
+        acc[category] = [];
+    }
+    acc[category].push(examen);
+    return acc;
+}, {} as GroupedExamenes); // 👈 FORZAR EL TIPO AQUÍ
+
+const categories = Object.keys(groupedExamenes).sort();
+---
+<Layout title="Listado de Exámenes de Inmunología">
+    <Nav />
+    
+    <main class="container mx-auto px-4 pt-24 pb-16 animate-blurred-fade-in">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-extrabold leading-tight text-gray-900 mb-4">
+                Listado de Exámenes
+            </h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Explora nuestro catálogo de análisis especializados...
+            </p>
+        </header>
+
+        <div class="max-w-6xl mx-auto">
+            {categories.map((category) => (
+                <section class="mb-12">
+                    <h2 class="text-3xl font-bold text-indigo-700 border-b-4 border-indigo-200 pb-2 mb-6">
+                        {category}
+                    </h2>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {groupedExamenes[category].map((examen) => (
+                            <a 
+                                href={`/examenes/${examen.slug}`} 
+                                class="block p-5 bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.01] transition duration-300 border-t-4 border-blue-500"
+                            >
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">{examen.data.title}</h3>
+                                <p class="text-sm text-gray-600 mb-3 line-clamp-2">{examen.data.description}</p>
+                                <div class="flex justify-between items-center pt-2 border-t border-gray-100">
+                                    <span class="text-sm font-semibold text-blue-600 uppercase">{examen.data.tipoExamen}</span>
+                                    <span class="text-lg font-extrabold text-green-700">
+                                        {examen.data.price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}
+                                    </span>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                </section>
+            ))}
+        </div>
+    </main>
+</Layout>

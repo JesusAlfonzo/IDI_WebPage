@@ -1,0 +1,26 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import ExamenLayout from '../../layouts/ExamenLayout.astro';
+
+// Tipado seguro
+type ExamenEntry = CollectionEntry<'examenes'>;
+
+// 1. FUNCIÓN CORREGIDA: Debe devolver el array de rutas.
+export async function getStaticPaths() {
+  const examenes = await getCollection('examenes');
+  
+  return examenes.map((examen) => ({
+    params: { slug: examen.slug }, 
+    props: { examen }, 
+  }));
+}
+// -------------------- FIN FUNCIÓN CORREGIDA --------------------
+
+// 2. Componente de la página (con tipado y renderizado seguro)
+const { examen } = Astro.props as { examen: ExamenEntry }; 
+const { Content } = await examen.render(); 
+---
+
+<ExamenLayout {...examen.data}>
+  <Content /> 
+</ExamenLayout>
