@@ -1,11 +1,11 @@
 ---
 title: Linfocito B (CD19)
-description: Cuantificación de los linfocitos B totales, esenciales para la producción de anticuerpos.
+description: Cuantificación de los linfocitos B totales, esenciales para la producción de anticuerpos (inmunidad humoral). CD19 es un marcador pan-B.
 pubDate: 2025-09-26
-category: General
+category: Citometría
 tipoExamen: Citometría de Flujo de Subpoblaciones
 price: 15.00
 ---
 
 ## Relevancia Clínica
-El recuento de CD19+ es el principal marcador de células B. Es crucial para el diagnóstico y seguimiento de inmunodeficiencias humorales, leucemias linfoblásticas B y la respuesta a terapias que agotan las células B.
+El recuento de CD19+ es el principal marcador de células B. Crucial para el diagnóstico y seguimiento de **inmunodeficiencias humorales** y leucemias B.
