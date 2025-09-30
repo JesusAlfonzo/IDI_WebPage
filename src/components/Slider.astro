@@ -66,32 +66,55 @@
 </section>
 
 <script is:inline>
-  const slider = document.querySelector("#slider");
-  const sliderContainer = slider.querySelector("div");
-  const childsSlider = [...slider.querySelectorAll("figure")];
-  const nextButton = document.querySelector("[data-button='next']");
-  const prevButton = document.querySelector("[data-button='prev']");
-  const lengthImages = childsSlider.length;
-  let currentIndex = 0;
+  /**
+   * Función que inicializa toda la lógica del carrusel.
+   * Se debe llamar cada vez que el DOM se actualiza.
+   */
+  function initSlider() {
+    // 1. Las selecciones de DOM deben estar DENTRO de la función
+    //    para que apunten a los elementos NUEVOS después del swap.
+    const slider = document.querySelector("#slider");
+    const sliderContainer = slider?.querySelector("div");
+    
+    // Si no encuentra el carrusel (ej: estás en otra página), sal de la función.
+    if (!slider || !sliderContainer) return; 
 
-  const updateSlider = () => {
-    const offset = currentIndex * 100;
-    sliderContainer.style.transform = `translateX(-${offset}%)`;
-  };
+    const childsSlider = [...slider.querySelectorAll("figure")];
+    const nextButton = document.querySelector("[data-button='next']");
+    const prevButton = document.querySelector("[data-button='prev']");
+    const lengthImages = childsSlider.length;
+    let currentIndex = 0;
 
-  nextButton.addEventListener("click", function (e) {
-    currentIndex++;
-    if (currentIndex >= lengthImages) {
-      currentIndex = 0;
-    }
-    updateSlider();
-  });
+    const updateSlider = () => {
+      const offset = currentIndex * 100;
+      sliderContainer.style.transform = `translateX(-${offset}%)`;
+    };
+    
+    // **Importante:** Limpia cualquier listener anterior si es necesario.
+    // En este caso, como los botones se reemplazan, no es estrictamente necesario,
+    // pero es buena práctica si el script se ejecuta más de una vez sin un DOM nuevo.
 
-  prevButton.addEventListener("click", function (e) {
-    currentIndex--;
-    if (currentIndex < 0) {
-      currentIndex = lengthImages - 1;
-    }
-    updateSlider();
-  });
+    // 2. Asignación de eventos a los nuevos botones
+    nextButton?.addEventListener("click", function (e) {
+      currentIndex++;
+      if (currentIndex >= lengthImages) {
+        currentIndex = 0;
+      }
+      updateSlider();
+    });
+
+    prevButton?.addEventListener("click", function (e) {
+      currentIndex--;
+      if (currentIndex < 0) {
+        currentIndex = lengthImages - 1;
+      }
+      updateSlider();
+    });
+  }
+
+  // Ejecutar en la carga inicial
+  initSlider();
+
+  // Ejecutar después de cada navegación/swap (incluyendo saltos de ancla con View Transitions)
+  document.addEventListener('astro:after-swap', initSlider);
 </script>
