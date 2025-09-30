@@ -1,17 +1,19 @@
 ---
 interface Props {
-    title : string;
+	title: string;
 }
 
-const { title } = Astro.props
+const { title } = Astro.props;
 ---
 
 <span class="flex items-center">
-  <span class="h-px flex-1 bg-gradient-to-r from-transparent to-gray-300"
+  <span
+    class="h-1 flex-1 bg-gradient-to-r from-transparent to-gray-200"
   ></span>
 
-  <span class="shrink-0 px-12 text-gray-900 prose-2xl">{title}</span>
+  <span class="shrink-0 px-8 text-black prose-xl font-bold">{title}</span>
 
-  <span class="h-px flex-1 bg-gradient-to-l from-transparent to-gray-300"
+  <span
+    class="h-1 flex-1 bg-gradient-to-l from-transparent to-gray-200"
   ></span>
 </span>
