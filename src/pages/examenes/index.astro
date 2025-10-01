@@ -1,25 +1,33 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content'; // 👈 IMPORTANTE: Añadir 'type CollectionEntry'
+import { getCollection, type CollectionEntry } from 'astro:content'; 
 import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
+/* Importa el nuevo componente */
+import SearchExams from '../../components/SearchExams.astro';
 
-
-// Definir el tipo para el objeto agrupador para evitar el error 'any'
+/* Definir el tipo para el objeto agrupador */
 type GroupedExamenes = Record<string, CollectionEntry<'examenes'>[]>; 
 
 const allExamenes = await getCollection('examenes');
 
 const groupedExamenes: GroupedExamenes = allExamenes.reduce((acc, examen) => {
-    // TypeScript ya sabe que examen.data.category es una de las categorías válidas (General, Alergias, etc.)
     const category = examen.data.category; 
     if (!acc[category]) {
         acc[category] = [];
     }
     acc[category].push(examen);
     return acc;
-}, {} as GroupedExamenes); // 👈 FORZAR EL TIPO AQUÍ
+}, {} as GroupedExamenes); 
 
 const categories = Object.keys(groupedExamenes).sort();
+
+/* 💡 FUNCIÓN AÑADIDA PARA SIMPLIFICAR EL RENDERIZADO DEL PRECIO */
+const formatPrice = (price: number): string => {
+    return price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' });
+};
+
+// ❌ Se elimina categorySections de aquí. El mapeo se hace en el HTML.
+
 ---
 <Layout title="IDI - Exámenes">
     <Nav />
@@ -35,30 +43,55 @@ const categories = Object.keys(groupedExamenes).sort();
         </header>
 
         <div class="max-w-6xl mx-auto">
-            {categories.map((category) => (
-                <section class="mb-12">
-                    <h2 class="text-3xl font-bold text-indigo-700 border-b-4 border-indigo-200 pb-2 mb-6">
-                        {category}
-                    </h2>
+            
+            {/* 💡 INTEGRACIÓN DEL COMPONENTE DE BÚSQUEDA */}
+            <SearchExams allExamenes={allExamenes} client:load />
+
+            {/* 💡 IMPLEMENTACIÓN DE SECCIONES COLAPSABLES CON <details>/<summary> */}
+            {categories.map((category, index) => (
+                // Usamos <details> en lugar de <section>
+                <details 
+                    class="mb-8 category-section group" 
+                    key={category} 
+                    // 💡 CAMBIO: Se ELIMINA el atributo 'open', lo que asegura que todas las secciones estén colapsadas por defecto.
+                >
+                    {/* El encabezado que se hace clic para colapsar */}
+                    <summary 
+                        class="cursor-pointer list-none py-3 px-4 rounded-lg bg-indigo-50 hover:bg-indigo-100 transition duration-200 border border-indigo-200 shadow-md flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+                    >
+                        <h2 class="text-2xl font-bold text-indigo-700 m-0">
+                            {category}
+                        </h2>
+                        {/* Ícono de flecha para indicar colapso */}
+                        {/* La flecha ahora apuntará a la derecha cuando esté colapsada y rotará 90 grados al abrirse */}
+                        <svg class="w-6 h-6 text-indigo-600 transform transition duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </summary>
                     
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {groupedExamenes[category].map((examen) => (
-                            <a 
-                                href={`/examenes/${examen.slug}`} 
-                                class="block p-5 bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.01] transition duration-300 border-t-4 border-blue-500"
-                            >
-                                <h3 class="text-xl font-bold text-gray-800 mb-2">{examen.data.title}</h3>
-                                <p class="text-sm text-gray-600 mb-3 line-clamp-2">{examen.data.description}</p>
-                                <div class="flex justify-between items-center pt-2 border-t border-gray-100">
-                                    <span class="text-sm font-semibold text-blue-600 uppercase">{examen.data.tipoExamen}</span>
-                                    <span class="text-lg font-extrabold text-green-700">
-                                        {examen.data.price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' })}
-                                    </span>
-                                </div>
-                            </a>
-                        ))}
+                    {/* El contenido colapsable */}
+                    <div class="pt-6 pb-2 animate-">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {groupedExamenes[category].map((examen) => (
+                                // Usamos retorno implícito simple para la tarjeta <a>
+                                <a 
+                                    href={`/examenes/${examen.slug}`} 
+                                    class="block p-5 bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.01] transition duration-300 border-t-4 border-blue-500"
+                                    key={examen.slug} // Añadida key
+                                >
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">{examen.data.title}</h3>
+                                    <p class="text-sm text-gray-600 mb-3 line-clamp-2">{examen.data.description}</p>
+                                    <div class="flex justify-between items-center pt-2 border-t border-gray-100">
+                                        <span class="text-sm font-semibold text-blue-600 uppercase">{examen.data.tipoExamen}</span>
+                                        <span class="text-lg font-extrabold text-green-700">
+                                            {formatPrice(examen.data.price)}
+                                        </span>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
                     </div>
-                </section>
+                </details>
             ))}
         </div>
     </main>
