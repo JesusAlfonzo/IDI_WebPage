@@ -3,32 +3,32 @@ import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Divider from "../components/Divider.astro";
 
-// Datos del Servicio (Para Informe_Alto_Costo.astro)
+// Datos del Servicio (Para Consulta.astro)
 const serviceData = {
-    title: "Elaboración de Informe Médico para Alto Costo",
-    description: "Documento especializado y detallado requerido para trámites administrativos de medicinas e insumos de alto costo ante instituciones públicas o aseguradoras.",
+    title: "Consulta Especializada en Inmunología",
+    description: "Evaluación médica integral con nuestros especialistas para el diagnóstico y manejo de enfermedades inmunológicas, autoinmunes y alérgicas.",
     prerequisites: [
-        "Consulta previa con el médico tratante.",
         "Cédula de identidad laminada.",
-        "Exámenes de laboratorio e imágenes recientes (no mayor a 6 meses).",
-        "Récipes y resumen de historia médica previa."
+        "Informes y exámenes de laboratorio previos.",
+        "Lista de medicamentos actuales (dosis y frecuencia)."
     ],
     stepByStep: [
-        "Recepción de Documentos: Entrega de toda la documentación requerida en la consulta.",
-        "Evaluación Médica: El especialista revisa, consolida y valida la información.",
-        "Elaboración del Informe: Redacción del informe médico justificando la necesidad del tratamiento/insumo.",
-        "Firma y Entrega: Recibe el informe original firmado y sellado por el especialista."
+        "Registro: Presenta tu documentación en la taquilla.",
+        "Espera: Serás llamado por el personal médico.",
+        "Consulta: Entrevista y examen físico por el médico especialista.",
+        "Indicaciones y Plan: El médico te proporcionará un diagnóstico, indicaciones y/o una orden para exámenes."
     ],
     schedule: [
-        { day: "Lunes a Viernes", time: "Horario de Oficina" },
-        { day: "Cita para Evaluación", time: "Según Cita Previa" },
-        { day: "Entrega de Informes", time: "11:00 AM - 1:00 PM" },
+        { day: "Lunes a Viernes", time: "Horario de Citas" },
+        { day: "Recepción de pacientes", time: "8:00 AM - 12:00 PM" },
+        { day: "Emergencias/Prioridad", time: "Según disponibilidad" },
     ],
     contactInfo: {
         phone: "0212-6053509 / 0212-6053508",
         email: "laboratorio.idiucv@gmail.com"
     }
 };
+
 ---
 
 <Layout title={`IDI - ${serviceData.title}`}>
