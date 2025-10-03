@@ -3,31 +3,32 @@ import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Divider from "../components/Divider.astro";
 
-// Datos del Servicio (Para Prueba_de_Provocacion.astro)
+// Datos del Servicio (Para Consulta.astro)
 const serviceData = {
-    title: "Prueba de Provocación Oral / Nasal",
-    description: "Método diagnóstico supervisado para confirmar alergias a alimentos o medicamentos, administrando dosis crecientes del alérgeno en un ambiente seguro.",
+    title: "Consulta Especializada en Inmunología",
+    description: "Evaluación médica integral con nuestros especialistas para el diagnóstico y manejo de enfermedades inmunológicas, autoinmunes y alérgicas.",
     prerequisites: [
-        "Orden médica original y justificación detallada.",
         "Cédula de identidad laminada.",
-        "Ayuno y suspensión de antihistamínicos (según protocolo estricto).",
-        "Vigilancia de un acompañante adulto durante y después del procedimiento."
+        "Informes y exámenes de laboratorio previos.",
+        "Lista de medicamentos actuales (dosis y frecuencia)."
     ],
     stepByStep: [
-        "Preparación: Monitoreo de signos vitales basales.",
-        "Administración: El alérgeno se administra en dosis pequeñas y crecientes, bajo estricta vigilancia médica.",
-        "Observación: Se monitorea al paciente durante varias horas tras la última dosis.",
-        "Diagnóstico: El médico confirma o descarta la alergia en base a la reacción."
+        "Registro: Presenta tu documentación en la taquilla.",
+        "Espera: Serás llamado por el personal médico.",
+        "Consulta: Entrevista y examen físico por el médico especialista.",
+        "Indicaciones y Plan: El médico te proporcionará un diagnóstico, indicaciones y/o una orden para exámenes."
     ],
     schedule: [
-        { day: "Días Específicos", time: "Requiere Cita Previa" },
-        { day: "Duración", time: "Mínimo 4 - 6 horas" },
+        { day: "Lunes a Viernes", time: "Horario de Citas" },
+        { day: "Recepción de pacientes", time: "8:00 AM - 12:00 PM" },
+        { day: "Emergencias/Prioridad", time: "Según disponibilidad" },
     ],
     contactInfo: {
         phone: "0212-6053509 / 0212-6053508",
         email: "laboratorio.idiucv@gmail.com"
     }
 };
+
 ---
 
 <Layout title={`IDI - ${serviceData.title}`}>

@@ -1,0 +1,131 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+// Definir el tipo para los props: una lista plana de todos los exámenes.
+interface Props {
+    allExamenes: CollectionEntry<'examenes'>[];
+}
+
+const { allExamenes } = Astro.props;
+// Convertimos la lista de exámenes en una cadena JSON para pasarla a JavaScript
+const examenesJson = JSON.stringify(allExamenes.map(examen => ({
+    title: examen.data.title,
+    description: examen.data.description,
+    category: examen.data.category,
+    tipoExamen: examen.data.tipoExamen,
+    price: examen.data.price,
+    slug: examen.slug
+})));
+---
+
+<div id="search-container" class="mb-12">
+    <!-- Barra de búsqueda -->
+    <div class="relative max-w-2xl mx-auto mb-8">
+        <input
+            type="text"
+            id="search-input"
+            placeholder="Buscar por nombre, descripción o categoría..."
+            class="w-full p-4 pl-12 text-lg border-2 border-indigo-300 rounded-xl focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 transition duration-150 shadow-md"
+        />
+        <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+    </div>
+
+    <!-- Contenedor donde se mostrarán los resultados de la búsqueda -->
+    <div id="search-results" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" style="display: none;">
+        <!-- Los resultados se inyectarán aquí mediante JavaScript -->
+    </div>
+
+    <!-- Mensaje de no resultados -->
+    <div id="no-results" class="hidden max-w-2xl mx-auto text-center p-8 bg-yellow-50 rounded-xl border border-yellow-200">
+        <p class="text-xl text-yellow-800 font-semibold">
+            🤷‍♂️ No se encontraron exámenes que coincidan con tu búsqueda.
+        </p>
+        <p class="text-gray-600 mt-2">Intenta usar términos más generales o revisa la ortografía.</p>
+    </div>
+</div>
+
+
+<script define:vars={{ examenesJson }}>
+    // Parsear los datos de Astro
+    const allExamenes = JSON.parse(examenesJson);
+    
+    // Referencias a elementos del DOM
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    const noResults = document.getElementById('no-results');
+    const categorySections = document.querySelectorAll('.category-section');
+
+    /**
+     * Función para crear el HTML de una tarjeta de examen.
+     * Es la misma estructura que usas en index.astro.
+     */
+    function createExamenCard(examen) {
+        const priceFormatted = examen.price.toLocaleString('es-ES', { style: 'currency', currency: 'USD' });
+        
+        return `
+            <a 
+                href="/examenes/${examen.slug}" 
+                class="block p-5 bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-[1.01] transition duration-300 border-t-4 border-blue-500 "
+            >
+                <h3 class="text-xl font-bold text-gray-800 mb-2">${examen.title}</h3>
+                <p class="text-sm text-gray-600 mb-3 line-clamp-2">${examen.description}</p>
+                <div class="flex justify-between items-center pt-2 border-t border-gray-100">
+                    <span class="text-sm font-semibold text-blue-600 uppercase">${examen.tipoExamen}</span>
+                    <span class="text-lg font-extrabold text-green-700">
+                        ${priceFormatted}
+                    </span>
+                </div>
+            </a>
+        `;
+    }
+
+    // Escuchar el evento de entrada en la barra de búsqueda
+    searchInput.addEventListener('input', (event) => {
+        const query = event.target.value.toLowerCase().trim();
+        searchResults.innerHTML = '';
+        
+        if (query.length < 2) {
+            // Mostrar las secciones originales y ocultar los resultados
+            categorySections.forEach(section => section.style.display = 'block');
+            searchResults.style.display = 'none';
+            noResults.classList.add('hidden');
+            return;
+        }
+
+        // 1. Filtrar los exámenes
+        const filteredExamenes = allExamenes.filter(examen => {
+            const searchFields = [
+                examen.title,
+                examen.description,
+                examen.category,
+                examen.tipoExamen
+            ].join(' ').toLowerCase();
+            
+            return searchFields.includes(query);
+        });
+
+        // 2. Mostrar/Ocultar elementos según el filtro
+        if (filteredExamenes.length > 0) {
+            // Ocultar las secciones originales
+            categorySections.forEach(section => section.style.display = 'none');
+            
+            // Mostrar la sección de resultados
+            searchResults.style.display = 'grid';
+            noResults.classList.add('hidden');
+            
+            // Rellenar resultados
+            filteredExamenes.forEach(examen => {
+                searchResults.innerHTML += createExamenCard(examen);
+            });
+            
+        } else {
+            // Ocultar la sección original y mostrar mensaje de no resultados
+            categorySections.forEach(section => section.style.display = 'none');
+            searchResults.style.display = 'none';
+            noResults.classList.remove('hidden');
+        }
+    });
+
+</script>

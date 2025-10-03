@@ -3,25 +3,25 @@ import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Divider from "../components/Divider.astro";
 
-// Datos del Servicio (Para Prueba_de_Provocacion.astro)
+// Datos del Servicio (Para Prueba_Epicutanea.astro)
 const serviceData = {
-    title: "Prueba de Provocación Oral / Nasal",
-    description: "Método diagnóstico supervisado para confirmar alergias a alimentos o medicamentos, administrando dosis crecientes del alérgeno en un ambiente seguro.",
+    title: "Prueba Epicutánea (Patch Test)",
+    description: "Detección de **alergias de contacto** (Dermatitis de Contacto) a sustancias como metales, tintes o químicos mediante la colocación de parches en la espalda.",
     prerequisites: [
-        "Orden médica original y justificación detallada.",
+        "Orden médica original.",
         "Cédula de identidad laminada.",
-        "Ayuno y suspensión de antihistamínicos (según protocolo estricto).",
-        "Vigilancia de un acompañante adulto durante y después del procedimiento."
+        "Suspender corticoides orales/tópicos en la zona de prueba (según indicación).",
+        "Evitar la exposición solar intensa en la espalda 1 semana antes."
     ],
     stepByStep: [
-        "Preparación: Monitoreo de signos vitales basales.",
-        "Administración: El alérgeno se administra en dosis pequeñas y crecientes, bajo estricta vigilancia médica.",
-        "Observación: Se monitorea al paciente durante varias horas tras la última dosis.",
-        "Diagnóstico: El médico confirma o descarta la alergia en base a la reacción."
+        "Día 1: Aplicación de parches con alérgenos en la espalda.",
+        "Día 3 (48h): Primera lectura de la reacción. Los parches son retirados.",
+        "Día 5 (96h): Lectura final y diagnóstico. Debes volver al centro para ambas lecturas."
     ],
     schedule: [
-        { day: "Días Específicos", time: "Requiere Cita Previa" },
-        { day: "Duración", time: "Mínimo 4 - 6 horas" },
+        { day: "Lunes a Viernes", time: "7:00 AM - 12:00 PM" },
+        { day: "Día 1: Aplicación", time: "7:00 AM - 9:00 AM" },
+        { day: "Días 3 y 5: Lectura", time: "9:00 AM - 11:00 AM" },
     ],
     contactInfo: {
         phone: "0212-6053509 / 0212-6053508",
