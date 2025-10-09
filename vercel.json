@@ -1,7 +1,12 @@
 {
+  "build": {
+    "env": {
+      "ASTRO_NODE_EXPERIMENTAL": "true"
+    }
+  },
   "functions": {
     "dist/server/**": {
-      "runtime": "nodejs18.x"
+      "runtime": "nodejs20.x"
     }
   }
 }
