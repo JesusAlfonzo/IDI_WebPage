@@ -1,0 +1,13 @@
+{
+  "build": {
+    "env": {
+      "ASTRO_NODE_EXPERIMENTAL": "true"
+    }
+  },
+  "functions": {
+    "dist/server/**": {
+      "runtime": "nodejS20.x"
+    }
+  },
+  "crons": []
+}
