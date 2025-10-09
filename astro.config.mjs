@@ -15,7 +15,7 @@ export default defineConfig({
   },
 
   // Mantener output como 'server' para usar Vercel Serverless Functions
-  output:'server', 
+  output:'static', 
 
   // SOLUCIÓN FINAL:
   // 1. Forzar runtime: 'nodejs'.
