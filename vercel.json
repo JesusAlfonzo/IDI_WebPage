@@ -1,7 +1,7 @@
 {
   "functions": {
     "dist/server/**": {
-      "runtime": "nodejs22.x"
+      "runtime": "nodejs20.x"
     }
   }
 }
