@@ -17,8 +17,11 @@ export default defineConfig({
   // Mantener output como 'server' para usar Vercel Serverless Functions
   output:'server', 
 
-  // Corrección: La sintaxis de objeto aquí es correcta, asegurando que no haya errores de comas o expresiones
+  // SOLUCIÓN FINAL:
+  // 1. Forzar runtime: 'nodejs'.
+  // 2. Forzar format: 'cjs' (CommonJS) para resolver el ERR_MODULE_NOT_FOUND.
   adapter: vercel({
-    runtime: 'nodejs' // Clave y valor válidos
+    runtime: 'nodejs',
+    format: 'cjs' // <--- ESTO DEBE ARREGLARLO
   }),
 });
