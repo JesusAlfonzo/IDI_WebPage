@@ -1,12 +1,15 @@
 {
-  "build": {
-    "env": {
-      "ASTRO_NODE_EXPERIMENTAL": "true"
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
     }
-  },
-  "functions": {
-    "dist/server/**": {
-      "runtime": "nodejs20.x"
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "index.html"
     }
-  }
+  ]
 }
