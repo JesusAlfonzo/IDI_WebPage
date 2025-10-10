@@ -1,0 +1,87 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"src": "^/_server-islands/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/_image/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/about/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/consulta/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/consultas/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/epicutanea/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/espirometria/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/examenes/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/examenes/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/informe-alto-costo/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/laboratorio/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/prick/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/prueba-epicutanea/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/prueba-provocacion/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/quienes-somos/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/suero-autologo/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/tratamiento-parenteral/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/$",
+			"dest": "_render"
+		}
+	]
+}
